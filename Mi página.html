@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Web</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon: #bf00ff;
+            --neon2: #ff00aa;
+            --bg: #050510;
+            --card: #0d0d1f;
+            --border: #1a1a3a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(191, 0, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(191, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #c0c0d0;
+            font-size: 1.1rem;
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            padding: 50px 20px 40px;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(191, 0, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 900;
+            color: #fff;
+            text-shadow:
+                0 0 10px #bf00ff,
+                0 0 30px #bf00ff,
+                0 0 60px rgba(191, 0, 255, 0.4);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: flicker 4s infinite;
+        }
+
+        .header-line {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+            margin: 16px auto 0;
+            animation: pulse-line 2s infinite;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            95%,
+            100% {
+                opacity: 1;
+            }
+
+            96% {
+                opacity: 0.7;
+            }
+
+            97% {
+                opacity: 1;
+            }
+
+            98% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes pulse-line {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                width: 200px;
+            }
+
+            50% {
+                opacity: 1;
+                width: 300px;
+            }
+        }
+
+        section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--neon);
+            border-radius: 4px 12px 12px 4px;
+            padding: 20px 24px;
+            margin: 30px 0 20px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.05), inset 0 0 30px rgba(191, 0, 255, 0.02);
+        }
+
+        section::before {
+            content: '// INFORMACION';
+            position: absolute;
+            top: -10px;
+            left: 16px;
+            background: var(--bg);
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            padding: 0 8px;
+            letter-spacing: 2px;
+        }
+
+        section p {
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        ul li a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid var(--neon);
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        ul li a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--neon);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+            z-index: 0;
+        }
+
+        ul li a:hover::before {
+            transform: translateX(0);
+        }
+
+        ul li a:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--neon);
+        }
+
+        ul li a span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .media-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: block;
+            transition: all 0.3s;
+            filter: brightness(0.85) saturate(1.2);
+        }
+
+        .media-grid img:hover {
+            border-color: var(--neon);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.3);
+            filter: brightness(1) saturate(1.4);
+            transform: scale(1.02);
+        }
+
+        .video-wrapper {
+            position: relative;
+            margin: 24px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 30px rgba(191, 0, 255, 0.1);
+        }
+
+        .video-wrapper::before {
+            content: '▶ REPRODUCIENDO...';
+            display: block;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            padding: 8px 16px;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: #444466;
+            text-transform: uppercase;
+        }
+
+        footer span {
+            color: var(--neon2);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Mi Primera Web</h1>
+        <div class="header-line"></div>
+    </header>
+
+    <main>
+        <section>
+            <p>Hola, esta en mi primera página web, si la estas viendo es porque funcionó. Puedes sentirte como en casa,
+                aunque no hay mucho que ver todavía.</p>
+        </section>
+
+        <ul>
+            <li>
+                <a href="https://youtube.com" target="_blank">
+                    <span>⟶ Ir a YouTube</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="media-grid">
+            <img src="https://media.tenor.com/0ek34phDhOEAAAAi/my-homepage-homepage.gif" alt="homepage gif">
+            <img src="https://imgs.search.brave.com/8gwtTWsPsvkDhk6knbh-X4H6zCvp211p9yl2nQJMmDw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9mdW5u/eS1jYXQtc2FyY2Fz/dGljLWdhcmRlbi1z/bWlsZS1mdW5ueS1j/YXQtc2FyY2FzdGlj/LTEyNTA0NDU1NC5q/cGc"
+                alt="Un lindo gato">
+        </div>
+
+        <div class="video-wrapper">
+            <video src="Hamoud Habibi.mp4" controls autoplay muted></video>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 <span>MI PRIMERA WEB</span> --TODO A TU ALCANCE--</p>
+    </footer>
+</body>
+
+</html>
